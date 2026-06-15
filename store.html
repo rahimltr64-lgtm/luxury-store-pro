@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المتجر - Luxury Store Pro</title>
+    <style>
+        body {font-family: system-ui; margin:0; background:#f8f9fa;}
+        .product-grid {display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 20px;}
+        .product {background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s;}
+        .product:hover {transform: translateY(-8px);}
+        .product img {width: 100%; height: 220px; object-fit: cover;}
+        .add-to-cart {width: 100%; padding: 14px; background: #6b46c1; color: white; border: none; font-size: 16px; cursor: pointer;}
+        .error {color: red; display: none;}
+    </style>
+</head>
+<body>
+    <header style="background: #6b46c1; color: white; padding: 15px; text-align: center;">
+        <h1>🛍️ Luxury Store Pro</h1>
+        <p>رقم التواصل: <a href="tel:+213697914837" style="color:white">0697 914 837</a></p>
+    </header>
+
+    <div class="product-grid" id="products"></div>
+
+    <div id="error" class="error">حدث خطأ. يرجى إعادة تحميل الصفحة.</div>
+
+    <a href="https://wa.me/213697914837?text=مرحبا%20أريد%20طلب%20من%20المتجر" style="position:fixed;bottom:20px;right:20px;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 12px rgba(0,0,0,0.3);">💬</a>
+
+    <script>
+        const products = [
+            {name: 'الذهبي الملكي', price: '4500 د.ج', img: 'https://picsum.photos/id/1015/300/300', desc: 'فخامة لا مثيل لها'},
+            {name: 'الأزرق الكلاسيكي', price: '4200 د.ج', img: 'https://picsum.photos/id/201/300/300', desc: 'أناقة كلاسيكية'},
+            {name: 'البنفسجي الفاخر', price: '4800 د.ج', img: 'https://picsum.photos/id/301/300/300', desc: 'لون راقي'},
+        ];
+
+        function renderProducts() {
+            const container = document.getElementById('products');
+            container.innerHTML = products.map(p => `
+                <div class="product">
+                    <img src="${p.img}" alt="${p.name}">
+                    <div style="padding:15px;">
+                        <h3>${p.name}</h3>
+                        <p>${p.desc}</p>
+                        <p style="font-size:1.3em;color:#6b46c1;font-weight:bold;">${p.price}</p>
+                        <button class="add-to-cart" onclick="addToCart('${p.name}')">إضافة إلى السلة</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(name) {
+            alert(`تم إضافة ${name} إلى السلة! سيتم التواصل معك عبر الواتساب.`);
+        }
+
+        window.onload = renderProducts;
+    </script>
+</body>
+</html>
